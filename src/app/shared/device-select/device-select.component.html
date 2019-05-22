@@ -1,0 +1,10 @@
+<ng-multiselect-dropdown
+    (onDeSelect)="onDeviceSelectedOrDeselected()"
+    (onDeSelectAll)="onClearFilter()"
+    (onSelect)="onDeviceSelectedOrDeselected()"
+    (onSelectAll)="onAllDevicesSelected()"
+    [(ngModel)]="selectedDevices"
+    [data]="devices"
+    [placeholder]="'Choose devices'"
+    [settings]="dropdownSettings">
+</ng-multiselect-dropdown>

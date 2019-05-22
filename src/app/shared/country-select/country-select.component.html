@@ -1,0 +1,10 @@
+<ng-multiselect-dropdown
+    (onDeSelect)="onCountrySelectedOrDeselected()"
+    (onDeSelectAll)="onFilterClear()"
+    (onSelect)="onCountrySelectedOrDeselected()"
+    (onSelectAll)="onAllCountriesSelected()"
+    [(ngModel)]="selectedCountries"
+    [data]="countries"
+    [placeholder]="'Choose countries'"
+    [settings]="dropdownSettings">
+</ng-multiselect-dropdown>

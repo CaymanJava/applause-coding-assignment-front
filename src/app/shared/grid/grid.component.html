@@ -1,0 +1,60 @@
+<div *ngIf="data && data.totalElements > 0">
+  <div class="row mt-1">
+  </div>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th *ngFor="let column of columns">
+          <span class="grid-header bold">
+            <app-grid-header [column]="column"></app-grid-header>
+          </span>
+        </th>
+        <th *ngIf="actions.length > 0"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let row of data.content">
+        <td *ngFor="let column of columns">
+          <span class="grid-column">
+            {{ getValue(row[column.key], column.dataType) }}
+          </span>
+        </td>
+        <td *ngIf="actions.length > 0" class="text-right">
+          <div *ngIf="actions.length < 2">
+            <div *ngFor="let action of actions">
+              <button (click)="onActionClick(action.key, row)"
+                      class="btn btn-outline-primary mt-3 mb-3 m-sm-0 btn-rounded btn-sm" type="button">
+                {{action.title}}
+              </button>
+            </div>
+          </div>
+          <div *ngIf="actions.length > 1" class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" type="button">
+              Actions
+            </button>
+            <div class="dropdown-menu">
+              <button (click)="onActionClick(action.key, row)"
+                      *ngFor="let action of actions"
+                      class="dropdown-item">{{action.title}}
+              </button>
+            </div>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="grid-resume row">
+    <div class="col-lg-6">
+      <span class="total-elements"> Showed {{data.numberOfElements}} | Total elements {{data.totalElements}} records</span>
+    </div>
+    <div *ngIf="data.totalElements > data.size" class="col-lg-6">
+      <ngb-pagination (pageChange)="onPageChange($event)" [collectionSize]="data.totalElements" [maxSize]="5" [pageSize]="data.size"
+                      [page]="page" size="md"></ngb-pagination>
+    </div>
+  </div>
+</div>
+<div *ngIf="data && data.totalElements === 0">
+  <hr>
+</div>

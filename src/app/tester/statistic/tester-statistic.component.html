@@ -1,0 +1,20 @@
+<div class="tester-statistic">
+  <app-statistic-filter
+      (search)="onSearch($event)">
+  </app-statistic-filter>
+
+  <div *ngIf="data" class="statistic-grid row">
+    <div class="col-md-12">
+      <app-grid #grid (actionClick)="onActionClick($event)"
+                (pageableParamsChange)="onPageChange($event)"
+                [data]="data">
+        <app-grid-column key="firstName" title="First name"></app-grid-column>
+        <app-grid-column key="lastName" title="Last name"></app-grid-column>
+        <app-grid-column key="countryCode" title="Country"></app-grid-column>
+        <app-grid-column key="criteriaBugCount" title="Criteria Bug Count"></app-grid-column>
+        <app-grid-column dataType="date-time" key="lastLogin" title="Last login"></app-grid-column>
+        <app-grid-action key="viewTesterBugs" title="All bugs"></app-grid-action>
+      </app-grid>
+    </div>
+  </div>
+</div>
